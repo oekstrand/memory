@@ -7,7 +7,7 @@ interface MapQuizProps {
   onComplete: (correct: number, incorrect: number) => void;
   countries: string[];
 }
-export const MapQuiz = ({ onComplete, countries }: MapQuizProps) => {
+export const CountryQuiz = ({ onComplete, countries }: MapQuizProps) => {
   const [remainingCountries, setRemainingCountries] = useState(countries);
   const [nofCorrectAnswers, setNofCorrectAnswers] = useState(0);
   const [nofIncorrectAnswers, setNofIncorrectAnswers] = useState(0);

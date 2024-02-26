@@ -13,7 +13,9 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as CountriesIndexImport } from './routes/countries/index'
+import { Route as CitiesIndexImport } from './routes/cities/index'
 import { Route as CountriesSouthAmericaImport } from './routes/countries/south-america'
+import { Route as CitiesSouthAmericaImport } from './routes/cities/south-america'
 
 // Create/Update Routes
 
@@ -27,8 +29,18 @@ const CountriesIndexRoute = CountriesIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const CitiesIndexRoute = CitiesIndexImport.update({
+  path: '/cities/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const CountriesSouthAmericaRoute = CountriesSouthAmericaImport.update({
   path: '/countries/south-america',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CitiesSouthAmericaRoute = CitiesSouthAmericaImport.update({
+  path: '/cities/south-america',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -40,8 +52,16 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/cities/south-america': {
+      preLoaderRoute: typeof CitiesSouthAmericaImport
+      parentRoute: typeof rootRoute
+    }
     '/countries/south-america': {
       preLoaderRoute: typeof CountriesSouthAmericaImport
+      parentRoute: typeof rootRoute
+    }
+    '/cities/': {
+      preLoaderRoute: typeof CitiesIndexImport
       parentRoute: typeof rootRoute
     }
     '/countries/': {
@@ -55,7 +75,9 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
+  CitiesSouthAmericaRoute,
   CountriesSouthAmericaRoute,
+  CitiesIndexRoute,
   CountriesIndexRoute,
 ])
 
